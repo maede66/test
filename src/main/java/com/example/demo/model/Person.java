@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.math.BigInteger;
 import java.util.*;
@@ -10,11 +12,11 @@ public class Person {
     private String fname;
     private String lname;
     private String faname;
-
+    private String code;
     private Set<PersonContact> personContacts = new HashSet();
     //    private List<PersonContact> contacts= new ArrayList<>();
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+
+    private Integer id;
 
     @OneToMany()
     @JoinColumn()
@@ -28,7 +30,15 @@ public class Person {
 
     public Person() {
     }
+    @Pattern(regexp = "\\d{10}", message = "invalid code meli")
+    public String getCode() {
+        return code;
+    }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+    @NotNull
     public String getFname() {
         return fname;
     }
@@ -36,7 +46,7 @@ public class Person {
     public void setFname(String fname) {
         this.fname = fname;
     }
-
+    @NotNull
     public String getLname() {
         return lname;
     }
@@ -53,28 +63,32 @@ public class Person {
         this.faname = faname;
     }
 
-
     @Id
-    @Pattern(regexp = "d{10}", message = "invalid code meli")
-    public BigInteger getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+          public Integer getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+    private Map<Integer, Person> persons = new HashMap() ;
 
+    public void addItem(Person person){
+        Person person1 = new Person();
+        persons.put(person1.getId(), person);
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(fname, person.fname) && Objects.equals(lname, person.lname) && Objects.equals(faname, person.faname) && Objects.equals(sobriqute, person.sobriqute) && Objects.equals(personContacts, person.personContacts) && Objects.equals(id, person.id);
     }
-
     @Override
     public String toString() {
         return faname+ "  ".concat(lname);
     }
+
+    public void removePerson(int id){
+        persons.remove(id);
+    }
+    public void update(int id, String fname){
+        persons.get(id).setFaname(faname);
+    }
+
 }

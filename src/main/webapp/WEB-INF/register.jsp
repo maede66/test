@@ -1,25 +1,39 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
+<head>
 <meta charset="UTF-8">
-
-<form method="post" modelAttribute="person">
-<%--   --%>
-    firstname:<input name="fname">
+</head>
+<body>
+<form:form method="post" modelAttribute="person">
+    firstname:<form:input path="fname"/>
     <form:errors path="fname" cssStyle="color: red"/><br>
-    lastname:<input name="lname">
+    lastname:<form:input path="lname"/>
     <form:errors path="lname" cssStyle="color: red"/><br>
-    fathername:<input name="faname"><br>
-    codemelli:<input name="id">
-    <form:errors path="id"/><br>
-    <button type="submit" >ثبت </button>
-<%--    <input type="submit" value="بازگشت">--%>
-<%--    آدرس:<input name="address"><br>--%>
-</form>
-<%--<form:form method="post">--%>
+    fathername:<form:input path="faname"/><br>
+    codemelli:<form:input path="code"/>
+    <form:errors path="code"/>
+<button type="submit" >Register </button>
+<input type="submit" value="بازگشت">
 
-<%--</form:form>--%>
-<%--<form:form method="post">--%>
 
-<%--</form:form>--%>
+<%--address:<input name="address"><br>--%>
 
+
+
+<%--    Province: <select name="province" onchange="">--%>
+<%--    <fore >--%>
+<%--        <option value="{}"></option>--%>
+<%--    </fore>--%>
+<%--    </select>--%>
+<%--City: <select name="city">--%>
+<%--     <option value="value 1" ></option>--%>
+<%--</select>--%>
+<%--    </br>--%>
+   </br>
+
+
+<h5>اطلاعات تماس</h5><br>
+
+</form:form>
+</body>
 </html>

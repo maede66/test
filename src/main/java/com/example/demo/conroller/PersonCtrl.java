@@ -1,5 +1,6 @@
 package com.example.demo.conroller;
 
+import com.example.demo.model.PersonAddress;
 import com.example.demo.repository.PersonRepo;
 import com.example.demo.model.Person;
 import com.example.demo.exception.PersonNotFoundException;
@@ -24,27 +25,50 @@ public class PersonCtrl {
     }
 
     @GetMapping("/register")
-    public String showregform() {
-        return "register";
+    public String showregform(Model model){
+    model.addAttribute("person", new Person());
+    return "register";
     }
 
     @PostMapping("/register")
     public String register(@Valid Person person, Errors error, RedirectAttributes model) {
-        if (error.hasErrors())
+        if (error.hasErrors()) {
+            System.out.println(error.getAllErrors());
             return "register";
-        repo.save(person);
+        }
+        try {
+            repo.save(person);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         model.addAttribute("id", person.getId());
         model.addFlashAttribute("person", person);
-        return "welcom";
+        return "redirect:/register";
+    }
+//    @RequestMapping
+//    public String Persons(){
+//
+//        repo.getAllById(Integer );
+//
+//    }
+
+    @GetMapping("/{id}")
+    public String showPersons( Model model,@PathVariable int id){
+     Optional<Person> optional= repo.findById(id);
+     Person person=optional.get();
+     String sobricate= person.toString();
+     model.addAttribute("person" ,person );
+     model.addAttribute("sobricate" ,sobricate );
+    return "/showpersons";
     }
 
-//    @GetMapping("/{id}")
-//    public String showPersons( Model model,@PathVariable int id){
-//     Optional<Person> optional= repo.findById(id);
-//     Person person=optional.get();
-//     model.addAttribute("person" ,person );
-//     return "showperson";
-//    }
+
+    @GetMapping("/search")
+    public String searchItem( Model model) {
+        List<Person> items = repo.findAll();
+        model.addAttribute("persons", items);
+        return "/search";
+    }
 
 
 

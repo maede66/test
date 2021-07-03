@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PersonRepo extends CrudRepository<Person,Integer> {
 //    List<Person> findByNameLike(String pattern);
-
 //    @Query("select * from Person" )
+    List<Person> findAll();
 }
 //

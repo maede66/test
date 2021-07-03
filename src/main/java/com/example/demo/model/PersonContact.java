@@ -1,8 +1,9 @@
 package com.example.demo.model;
 
 import javassist.bytecode.ConstantAttribute;
-
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class PersonContact {
@@ -19,16 +20,20 @@ public class PersonContact {
     public void setPerson(Person person) {
         this.person = person;
     }
-
-
-
-    public String getType() {
+    @ManyToOne
+    @JoinColumn
+    public ContactType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ContactType type) {
         this.type = type;
     }
+
+
+
+
+
 
     public Double getValue() {
         return value;

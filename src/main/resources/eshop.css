@@ -40,7 +40,7 @@ p.info {
 .header { /*********** Top bar ***********/
   width: 900px;
   height: 90px;
-  background: url(/resources/images/bg_header.gif) no-repeat top left;
+  background: url(/resources/img/bg_header.gif) no-repeat top left;
   margin: 0px;
   padding: 0px;
   border-top: 0px;
@@ -80,7 +80,7 @@ p.info {
 .menu { /*********** Left bar ***********/
   width: 180px;
   border: 1px #cccccc solid;
-  background: url(/resources/images/bg_menu.gif) repeat-y top left;
+  background: url(/resources/img/bg_menu.gif) repeat-y top left;
   margin: 0px;
   padding: 20px 0 10px 10px;
   float: left;

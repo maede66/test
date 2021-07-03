@@ -33,21 +33,24 @@ public class PersonAddress {
         this.id = id;
     }
 
-    public String getCity() {
+    @ManyToOne
+    public Zone getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(Zone city) {
         this.city = city;
     }
 
-    public String getProvince() {
+    @ManyToOne
+    public Zone getProvince() {
         return province;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(Zone province) {
         this.province = province;
     }
+
     @Pattern(regexp ="[1-9][0-9]{9}",message = "Invalid post code")
     public Double getPostcode() {
         return postcode;
